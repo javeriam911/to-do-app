@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <fieldset id="fieldSet">
+        <div class="container">
+            <div>
+                <input type="text" class="input" placeholder="Enter what you have to do?" id="todo-item">
+                <button class="buttons" onclick="addTodo()">add item</button>
+                <button class="buttons" onclick="deleteAll()">delete all</button>
+
+            </div>
+        </div>
+        <br>
+        <div>
+
+
+            <ol id="list">
+
+            </ol>
+            <br>
+        </div>
+        <br>
+
+    </fieldset>
+
+</body>
+<script>
+
+
+    let list = document.getElementById("list")
+    function addTodo() {
+        let todoItem = document.getElementById('todo-item')
+        let li = document.createElement('li')
+        let text = document.createTextNode(todoItem.value);
+
+
+
+        li.appendChild(text)
+        list.appendChild(li)
+
+
+
+        let delBtn = document.createElement("button")
+        let delText = document.createTextNode("delete");
+        delBtn.setAttribute("onclick", 'deleteItem(this)');
+        
+
+
+
+
+        delBtn.appendChild(delText);
+        li.appendChild(delBtn);
+        delBtn.setAttribute('class', 'btn')
+
+        let editbtn = document.createElement("button");
+        let editText = document.createTextNode('edit');
+        editbtn.appendChild(editText);
+        editbtn.setAttribute("onclick", 'editItem(this)')
+
+
+
+        li.appendChild(editbtn)
+        editbtn.setAttribute('class', 'btn')
+
+
+        console.log(li)
+        todoItem.value = ''
+
+    }
+
+
+
+    function editItem(e) {
+        let val = prompt("edit your value", e.parentNode.firstChild.nodeValue)
+        e.parentNode.firstChild.nodeValue = val
+
+    }
+
+
+    function deleteItem(e) {
+
+        console.log(e.parentNode.remove())
+    }
+
+
+    function deleteAll() {
+        list.innerText = ""
+    };
+
+    // if(todoItem = ){
+    //     addTodo = false
+    // }
+    // else{addTodo()}
+
+</script>
+
+</html>
